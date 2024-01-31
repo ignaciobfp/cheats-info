@@ -1,0 +1,41 @@
+Cómo crear imagen qcow2 para una máquina virtual a partir de un disco duro en proxmox
+
+1) Comprobar el driver con el id, debería ser vfio
+lspci -nnk -s '0000:21:00.0'
+21:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983 [144d:a808]
+        Subsystem: Samsung Electronics Co Ltd SSD 970 EVO [144d:a801]
+        Kernel driver in use: vfio-pci
+        Kernel modules: nvme
+
+2) Unbind
+echo '0000:21:00.0' > /sys/bus/pci/drivers/vfio-pci/unbind
+
+3) Volver a detectar discos
+echo '0000:21:00.0' > /sys/bus/pci/drivers_probe 
+
+4) Comprobar que está
+ls -all /dev/nvme*
+crw------- 1 root root 241,  0 Jan 31 15:30 /dev/nvme0
+brw-rw---- 1 root disk 259,  4 Jan 31 15:30 /dev/nvme0n1
+brw-rw---- 1 root disk 259,  5 Jan 31 15:30 /dev/nvme0n1p1
+brw-rw---- 1 root disk 259,  6 Jan 31 15:30 /dev/nvme0n1p2
+brw-rw---- 1 root disk 259,  7 Jan 31 15:30 /dev/nvme0n1p3
+brw-rw---- 1 root disk 259,  8 Jan 31 15:30 /dev/nvme0n1p4
+crw------- 1 root root 241,  1 Dec 11 10:13 /dev/nvme1
+brw-rw---- 1 root disk 259,  9 Dec 11 10:13 /dev/nvme1n1
+brw-rw---- 1 root disk 259, 10 Dec 11 10:13 /dev/nvme1n1p1
+brw-rw---- 1 root disk 259, 11 Dec 11 10:13 /dev/nvme1n1p2
+brw-rw---- 1 root disk 259, 12 Jan 30 13:03 /dev/nvme1n1p3
+crw------- 1 root root 241,  2 Dec 11 10:13 /dev/nvme2
+brw-rw---- 1 root disk 259,  0 Dec 11 10:13 /dev/nvme2n1
+brw-rw---- 1 root disk 259,  1 Dec 11 10:13 /dev/nvme2n1p1
+brw-rw---- 1 root disk 259,  2 Dec 11 10:13 /dev/nvme2n1p2
+brw-rw---- 1 root disk 259,  3 Dec 11 10:13 /dev/nvme2n1p3
+
+5) Guardar la imagen en formato qcow2 en alguna ubicación con espacio suficiente
+qemu-img convert -O qcow2 /dev/nvme0n1 /mnt/pve/VM_ISO/windows-server-bm.qcow2
+
+6) Importar la imagen al pool LVM (se copiará en local):
+qm importdisk 100 /mnt/pve/VM_ISO/windows-server-bm.qcow2 local-lvm
+
+7) Desde interfaz web, añadir un disco desde el espacio importado
