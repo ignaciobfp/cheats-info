@@ -1,0 +1,11 @@
+Assuming root user or sudo for all commands
+
+Disk to disk backup
+dd if=/dev/nvme0n1 of=/dev/nvme1n1 bs=64M conv=noerror,sync status=progress
+
+Trick to copy on the fly (tube dd to itself), can increase speed a bit
+dd if=/dev/nvme0n1 conv=sync,noerror bs=64M | dd of=/dev/nvme1n1
+
+
+Disk to image backup (compressed)
+dd if=/dev/sda conv=sync,noerror bs=64M | gzip -c  > /PATH/TO/DRIVE/backup_image.img.gz
