@@ -1,0 +1,68 @@
+Corsair DDR4 version list and explanations
+
+"Version Number"
+
+Corsair sticks identify the IC with a 'version number' on the label such as "ver 4.31" - props to them for this as it helps even less knowledgeable users to match kits when adding more sticks retroactively. The DDR4 numbers aren't officially documented, but they follow the same pattern as DDR3.
+
+The numbers take the for "ver X.YZ" where;
+
+* X is IC maker - 3 for Micron, 4 for Samsung, 5 for Hynix, presumably 8 for Nanya as with DDR3
+
+* Y seems to be capacity per rank - 1 for 2GB, 2 for 4GB, 3 for 8GB. Usually this translates directly to IC density (8GB/rank = 8Gbit), but ver 4.14 which uses half as many double width "x16" 4Gbit chips is a special case.
+
+* Z is revision, usually starting from A=0 and usually counting up one letter per increment. Hynix's first revisions are lettered "M" which is numbered as X.Y9, samsung now do this too and it will proesumably be the same.
+
+ 
+
+The known and possible version numbers are as follows;
+
+Version Vendor IC Confirmation?
+
+3.20 Micron 4Gbit Rev.A Presumed
+
+3.21 Micron 4Gbit Rev.B Confirmed
+
+3.22 Micron 4Gbit Rev.E* Speculated
+
+3.22 Micron 4Gbit Rev.F* Confirmed
+
+3.31 Micron 8Gbit Rev.B Confirmed
+
+3.33 Micron 8Gbit Rev.D Presumed
+
+3.34 Micron 8Gbit Rev.E Speculated
+
+4.14 Samsung 4Gbit D-die (4x16) Confirmed
+
+4.23 Samsung 4Gbit D-die Confirmed
+
+4.24 Samsung 4Gbit E-die Confirmed
+
+4.31 Samsung 8Gbit B-die Confirmed
+
+4.49 Samsung 16Gbit M-die Speculated
+
+4.40 Samsung 16Gbit A-die Speculated
+
+5.29 Hynix 4Gbit MFR Confirmed
+
+5.20 Hynix 4Gbit AFR Confirmed
+
+5.21 Hynix 4Gbit BJR Speculated
+
+5.39 Hynix 8Gbit MFR Confirmed
+
+5.30 Hynix 8Gbit AFR Presumed
+
+5.31 Hynix 8Gbit "BFR"??? Speculated
+
+5.32 Hynix 8Gbit CJR Presumed
+
+8.20** Nanya 4Gbit Rev.A Speculated
+
+8.30** Nanya 8Gbit Rev.A Speculated
+
+ 
+*Rev.F is confirmed to come in ver3.22 sticks, but that doesn't leave a gap for Rev.E. It's wildly guessed that they may both appear under 3.22.
+
+**It's unknown if Corsair even use Nanya for DDR4 but the version number it would likely be if they did is included for completeness
