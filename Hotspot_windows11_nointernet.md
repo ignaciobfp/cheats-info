@@ -1,3 +1,5 @@
+Adapted from: [r/AskAstrophotography reddit post](https://www.reddit.com/r/AskAstrophotography/comments/1625s32/making_a_windows_11_hotspot_without_an_internet/)
+
 # Introduction
 Until now, I have been running my mount and cameras directly from a Windows 10 laptop. While that has worked fine, it has always meant needing to set up my laptop pretty near the telescope assembly to allow all the cables to connect. More importantly, it also means that I have to keep a Windows laptop around instead of my normal Linux daily driver. (I use a celestron mount and use CPWI). So, I finally decided to buy a small Windows mini-PC to run the mount and camera. I settled on a [Mele Quieter3C mini-PC](https://www.amazon.com/dp/B0B773V4K3).
 
