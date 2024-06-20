@@ -3,8 +3,11 @@ Assuming root user or sudo for all commands
 Disk to disk backup
 dd if=/dev/nvme0n1 of=/dev/nvme1n1 bs=64M conv=noerror,sync status=progress
 
-Trick to copy on the fly (tube dd to itself), can increase speed a bit
+Trick to copy on the fly (tube dd to itself), can increase speed a bit*
 dd if=/dev/nvme0n1 conv=sync,noerror bs=64M | dd of=/dev/nvme1n1
+
+*Note:
+I also thought this, and I suppose this had been true long time ago. However, in a real scenario, this is no longer the case. I had to image a 1TB mechanical HDD from a broken laptop to hook it up to a VM. I tested the average speed with a big block size (128M in both cases) either with dd if=X of=Y and piping dd to itself (dd if=X | dd of=Y) and the performance is better with the first approach by a factor of 3. The average speed was 103MiB/s with the naive approach, and about 35MiB/s with the pipe method.
 
 
 Disk to image backup (compressed)
