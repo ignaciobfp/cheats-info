@@ -3,6 +3,11 @@ Assuming root user or sudo for all commands
 Disk to disk backup
 dd if=/dev/nvme0n1 of=/dev/nvme1n1 bs=64M conv=noerror,sync status=progress
 
+Disk to image backup
+dd if=/dev/nvme0n1 of=/path_to_file.raw bs=64M conv=noerror,sync status=progress
+To keep command alive after closing the terminal, and also supress output: add nohup. It creates a file nohup.out in current location with command output. Example:
+nohup dd if=/dev/nvme0n1 of=/path_to_file.raw bs=64M conv=noerror,sync status=progress
+
 Trick to copy on the fly (tube dd to itself), can increase speed a bit*
 dd if=/dev/nvme0n1 conv=sync,noerror bs=64M | dd of=/dev/nvme1n1
 
